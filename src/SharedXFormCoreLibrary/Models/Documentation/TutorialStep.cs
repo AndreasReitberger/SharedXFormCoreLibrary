@@ -1,7 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using System;
 
-namespace AndreasReitberger.Shared.Core.Documentation
+namespace AndreasReitberger.Shared.XForm.Core.Documentation
 {
     public partial class TutorialStep : ObservableObject
     {
