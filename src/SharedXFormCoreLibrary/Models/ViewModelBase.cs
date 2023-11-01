@@ -66,7 +66,10 @@ namespace AndreasReitberger.Shared.XForm.Core
         #endregion
 
         #region Ctor
-        public ViewModelBase() { }
+        public ViewModelBase()
+        {
+            Dispatcher = Application.Current.Dispatcher;
+        }
         public ViewModelBase(IDispatcher dispatcher)
         {
             Dispatcher = dispatcher;
