@@ -7,8 +7,15 @@
 	  <LangVersion>10</LangVersion>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Services\DeviceProviderService.Android.cs" />
+    <Compile Remove="Services\DeviceProviderService.iOS.cs" />
+  </ItemGroup>
+
 	<ItemGroup>
 		<None Include="..\..\README.md" Pack="true" PackagePath="\" />
+		<None Include="Services\DeviceProviderService.iOS.cs" />
+		<None Include="Services\DeviceProviderService.Android.cs" />
 	</ItemGroup>
 
 	<ItemGroup>
