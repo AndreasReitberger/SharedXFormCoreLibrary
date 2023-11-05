@@ -10,10 +10,14 @@
   <ItemGroup>
     <Compile Remove="Services\DeviceProviderService.Android.cs" />
     <Compile Remove="Services\DeviceProviderService.iOS.cs" />
+    <Compile Remove="Services\PlatformThemeService.Android.cs" />
+    <Compile Remove="Services\PlatformThemeService.iOS.cs" />
   </ItemGroup>
 
 	<ItemGroup>
 		<None Include="..\..\README.md" Pack="true" PackagePath="\" />
+		<None Include="Services\PlatformThemeService.iOS.cs" />
+		<None Include="Services\PlatformThemeService.Android.cs" />
 		<None Include="Services\DeviceProviderService.iOS.cs" />
 		<None Include="Services\DeviceProviderService.Android.cs" />
 	</ItemGroup>

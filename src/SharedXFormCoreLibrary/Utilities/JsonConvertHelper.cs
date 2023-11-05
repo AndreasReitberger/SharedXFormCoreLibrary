@@ -11,6 +11,7 @@ namespace AndreasReitberger.Shared.XForm.Core.Utilities
             {
                 settings ??= new JsonSerializerSettings()
                 {
+                    DateFormatString = "yyyy-MM-ddThh:mm:ss",
                     Error = (a, b) =>
                     {
                         throw new JsonReaderException($"Exception while deserializing the object type `{typeof(T)}` from the string `{jsonString}");
@@ -34,6 +35,7 @@ namespace AndreasReitberger.Shared.XForm.Core.Utilities
             {
                 settings ??= new JsonSerializerSettings()
                 {
+                    DateFormatString = "yyyy-MM-ddThh:mm:ss",
                     Error = (a, b) =>
                     {
                         throw new JsonReaderException($"Exception while serializing the object type `{typeof(T)}`.");

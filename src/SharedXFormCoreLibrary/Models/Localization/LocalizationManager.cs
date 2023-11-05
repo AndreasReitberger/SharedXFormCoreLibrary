@@ -74,24 +74,39 @@ namespace AndreasReitberger.Shared.XForm.Core.Localization
         {
             Languages = languages ?? new();
         }
-        public LocalizationInfo GetLocalizationInfoBasedOnCode(string cultureCode)
-        {
-            return Languages.FirstOrDefault(x => x.Code == cultureCode) ?? null;
-        }
-
+        public LocalizationInfo GetLocalizationInfoBasedOnCode(string cultureCode) => Languages.FirstOrDefault(x => x.Code == cultureCode) ?? null;
+        
         public Uri GetImageUri(string cultureCode)
         {
+#if NETSTANDARD
+            Uri image = Device.RuntimePlatform switch
+            {
+                Device.Android => new Uri($"{BaseFlagImageUri}/{cultureCode.Replace("-", "_")}.png", UriKind.RelativeOrAbsolute),
+                Device.iOS => new Uri($"{BaseFlagImageUri}/{cultureCode}", UriKind.RelativeOrAbsolute),
+                _ => new Uri($"{BaseFlagImageUri}/{cultureCode}.png", UriKind.RelativeOrAbsolute),
+            };
+#else
             Uri image = string.IsNullOrEmpty(BaseFlagImageUri) ?
                  new($"{cultureCode.Replace("-", "_").ToLowerInvariant()}.png", UriKind.RelativeOrAbsolute) :
                  new($"{BaseFlagImageUri}/{cultureCode.Replace("-", "_").ToLowerInvariant()}.png", UriKind.RelativeOrAbsolute);
+#endif
             return image;
         }
 
         public static Uri GetImageUri(string baseFlagUri, string cultureCode)
         {
+#if NETSTANDARD
+            Uri image = Device.RuntimePlatform switch
+            {
+                Device.Android => new Uri($"{baseFlagUri}/{cultureCode.Replace("-", "_")}.png", UriKind.RelativeOrAbsolute),
+                Device.iOS => new Uri($"{baseFlagUri}/{cultureCode}", UriKind.RelativeOrAbsolute),
+                _ => new Uri($"{baseFlagUri}/{cultureCode}.png", UriKind.RelativeOrAbsolute),
+            };
+#else
             Uri image = string.IsNullOrEmpty(baseFlagUri) ?
                  new($"{cultureCode.Replace("-", "_").ToLowerInvariant()}.png", UriKind.RelativeOrAbsolute) :
                  new($"{baseFlagUri}/{cultureCode.Replace("-", "_").ToLowerInvariant()}.png", UriKind.RelativeOrAbsolute);
+#endif
             return image;
         }
 
@@ -110,7 +125,7 @@ namespace AndreasReitberger.Shared.XForm.Core.Localization
         {
             return function?.Invoke(info) ?? false;
         }
-        #endregion
+#endregion
 
     }
 }
