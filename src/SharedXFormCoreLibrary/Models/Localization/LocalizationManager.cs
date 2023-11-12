@@ -82,7 +82,7 @@ namespace AndreasReitberger.Shared.XForm.Core.Localization
             Uri image = Device.RuntimePlatform switch
             {
                 Device.Android => new Uri($"{BaseFlagImageUri}/{cultureCode.Replace("-", "_")}.png", UriKind.RelativeOrAbsolute),
-                Device.iOS => new Uri($"{BaseFlagImageUri}/{cultureCode}", UriKind.RelativeOrAbsolute),
+                Device.iOS => new Uri($"{cultureCode}", UriKind.RelativeOrAbsolute),
                 _ => new Uri($"{BaseFlagImageUri}/{cultureCode}.png", UriKind.RelativeOrAbsolute),
             };
 #else
