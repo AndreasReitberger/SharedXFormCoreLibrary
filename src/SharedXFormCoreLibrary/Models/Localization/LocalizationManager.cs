@@ -1,4 +1,5 @@
-﻿using AndreasReitberger.Shared.XForm.Core.Interfaces;
+﻿using AndreasReitberger.Shared.XForm.Core.Events;
+using AndreasReitberger.Shared.XForm.Core.Interfaces;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -51,6 +52,15 @@ namespace AndreasReitberger.Shared.XForm.Core.Localization
         }
         #endregion
 
+        #region Events
+
+        public event EventHandler LanguageChanged;
+        protected virtual void OnLanguageChanged(LanguageChangedEventArgs e)
+        {
+            LanguageChanged?.Invoke(this, e);
+        }
+        #endregion
+
         #region Methods
         public void InitialLanguage(string cultureCode = "")
         {
@@ -70,11 +80,9 @@ namespace AndreasReitberger.Shared.XForm.Core.Localization
             }
         }
 
-        public void SetLanguages(List<LocalizationInfo> languages)
-        {
-            Languages = languages ?? new();
-        }
-        public LocalizationInfo GetLocalizationInfoBasedOnCode(string cultureCode) => Languages.FirstOrDefault(x => x.Code == cultureCode) ?? null;
+        public void SetLanguages(List<LocalizationInfo> languages) => Languages = languages ?? new();
+        
+        public LocalizationInfo GetLocalizationInfoBasedOnCode(string cultureCode) => Languages?.FirstOrDefault(x => x.Code == cultureCode) ?? null;
         
         public Uri GetImageUri(string cultureCode)
         {
@@ -114,15 +122,33 @@ namespace AndreasReitberger.Shared.XForm.Core.Localization
         {
             CurrentLanguage = info;
             CurrentCulture = new CultureInfo(info.Code);
+            OnLanguageChanged(new()
+            {
+                LangaugeInfo = info,
+                LangaugeCode = info.Code,
+                Culture = CurrentCulture,
+            });
         }
 
         public void Change(LocalizationInfo info, Action<LocalizationInfo> action)
         {
             action?.Invoke(info);
+            OnLanguageChanged(new()
+            {
+                LangaugeInfo = info,
+                LangaugeCode = info.Code,
+                Culture = CurrentCulture,
+            });
         }
 
         public bool Change(LocalizationInfo info, Func<LocalizationInfo, bool> function)
         {
+            OnLanguageChanged(new()
+            {
+                LangaugeInfo = info,
+                LangaugeCode = info.Code,
+                Culture = CurrentCulture,
+            });
             return function?.Invoke(info) ?? false;
         }
 #endregion
