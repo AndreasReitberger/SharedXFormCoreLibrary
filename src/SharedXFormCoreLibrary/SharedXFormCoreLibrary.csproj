@@ -1,18 +1,24 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
+	<Import Project="..\..\common.props" />
+	
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <Nullable>enable</Nullable>
 	<RootNamespace>AndreasReitberger.Shared.XForm.Core</RootNamespace>
-	  <LangVersion>10</LangVersion>
+	<LangVersion>10</LangVersion>
+
+	<Title>XForm-Core Shared Library</Title>
+	<Description>A core libray used for our Xamarin.Forms libraries.</Description>
+	<PackageTags> Xamarin, Forms, dotnet, NET, Standard, Core, Library, Helper, Preference</PackageTags>
+
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Services\DeviceProviderService.Android.cs" />
-    <Compile Remove="Services\DeviceProviderService.iOS.cs" />
-    <Compile Remove="Services\PlatformThemeService.Android.cs" />
-    <Compile Remove="Services\PlatformThemeService.iOS.cs" />
-  </ItemGroup>
+	<ItemGroup>
+		<Compile Remove="Services\DeviceProviderService.Android.cs" />
+		<Compile Remove="Services\DeviceProviderService.iOS.cs" />
+		<Compile Remove="Services\PlatformThemeService.Android.cs" />
+		<Compile Remove="Services\PlatformThemeService.iOS.cs" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<None Include="..\..\README.md" Pack="true" PackagePath="\" />
@@ -23,9 +29,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
-	  <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-	  <PackageReference Include="Xamarin.Essentials" Version="1.8.1" />
-	  <PackageReference Include="Xamarin.Forms" Version="5.0.0.2622" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="Xamarin.Essentials" Version="1.8.1" />
+		<PackageReference Include="Xamarin.Forms" Version="5.0.0.2622" />
 	</ItemGroup>
 </Project>

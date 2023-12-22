@@ -1,0 +1,37 @@
+
+<Project>
+    <PropertyGroup>
+        <Version>1.0.0</Version>
+        <!--<PackageIcon>logo_128.png</PackageIcon>-->
+        <NeutralLanguage>en</NeutralLanguage>
+        <PackageProjectUrl>https://github.com/AndreasReitberger/SharedXFormCoreLibrary</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/AndreasReitberger/SharedXFormCoreLibrary</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageReleaseNotes>Check GitHub releases for changelog.</PackageReleaseNotes>
+        <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <Authors>Andreas Reitberger</Authors>
+        <Copyright>Andreas Reitberger</Copyright>
+		<Company>Andreas Reitberger</Company>
+		<LangVersion>11</LangVersion>
+        <PublishReadyToRun>false</PublishReadyToRun>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+
+        <!--Source-Linking-->
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+        <IncludeSymbols>true</IncludeSymbols>
+    </PropertyGroup>
+
+<!--
+    <ItemGroup>
+      <None Include="..\..\art\logo_128.png">
+        <Pack>True</Pack>
+        <PackagePath></PackagePath>
+      </None>
+   </ItemGroup>
+-->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All"/>
+  </ItemGroup>
+</Project>
