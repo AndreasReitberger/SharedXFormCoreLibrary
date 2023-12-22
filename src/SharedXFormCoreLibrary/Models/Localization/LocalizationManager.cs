@@ -1,4 +1,5 @@
-﻿using AndreasReitberger.Shared.XForm.Core.Interfaces;
+﻿using AndreasReitberger.Shared.XForm.Core.Events;
+using AndreasReitberger.Shared.XForm.Core.Interfaces;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -51,6 +52,15 @@ namespace AndreasReitberger.Shared.XForm.Core.Localization
         }
         #endregion
 
+        #region Events
+
+        public event EventHandler LanguageChanged;
+        protected virtual void OnLanguageChanged(LanguageChangedEventArgs e)
+        {
+            LanguageChanged?.Invoke(this, e);
+        }
+        #endregion
+
         #region Methods
         public void InitialLanguage(string cultureCode = "")
         {
@@ -70,28 +80,41 @@ namespace AndreasReitberger.Shared.XForm.Core.Localization
             }
         }
 
-        public void SetLanguages(List<LocalizationInfo> languages)
-        {
-            Languages = languages ?? new();
-        }
-        public LocalizationInfo GetLocalizationInfoBasedOnCode(string cultureCode)
-        {
-            return Languages.FirstOrDefault(x => x.Code == cultureCode) ?? null;
-        }
-
+        public void SetLanguages(List<LocalizationInfo> languages) => Languages = languages ?? new();
+        
+        public LocalizationInfo GetLocalizationInfoBasedOnCode(string cultureCode) => Languages?.FirstOrDefault(x => x.Code == cultureCode) ?? null;
+        
         public Uri GetImageUri(string cultureCode)
         {
+#if NETSTANDARD
+            Uri image = Device.RuntimePlatform switch
+            {
+                Device.Android => new Uri($"{BaseFlagImageUri}/{cultureCode.Replace("-", "_")}.png", UriKind.RelativeOrAbsolute),
+                Device.iOS => new Uri($"{cultureCode}", UriKind.RelativeOrAbsolute),
+                _ => new Uri($"{BaseFlagImageUri}/{cultureCode}.png", UriKind.RelativeOrAbsolute),
+            };
+#else
             Uri image = string.IsNullOrEmpty(BaseFlagImageUri) ?
                  new($"{cultureCode.Replace("-", "_").ToLowerInvariant()}.png", UriKind.RelativeOrAbsolute) :
                  new($"{BaseFlagImageUri}/{cultureCode.Replace("-", "_").ToLowerInvariant()}.png", UriKind.RelativeOrAbsolute);
+#endif
             return image;
         }
 
         public static Uri GetImageUri(string baseFlagUri, string cultureCode)
         {
+#if NETSTANDARD
+            Uri image = Device.RuntimePlatform switch
+            {
+                Device.Android => new Uri($"{baseFlagUri}/{cultureCode.Replace("-", "_")}.png", UriKind.RelativeOrAbsolute),
+                Device.iOS => new Uri($"{baseFlagUri}/{cultureCode}", UriKind.RelativeOrAbsolute),
+                _ => new Uri($"{baseFlagUri}/{cultureCode}.png", UriKind.RelativeOrAbsolute),
+            };
+#else
             Uri image = string.IsNullOrEmpty(baseFlagUri) ?
                  new($"{cultureCode.Replace("-", "_").ToLowerInvariant()}.png", UriKind.RelativeOrAbsolute) :
                  new($"{baseFlagUri}/{cultureCode.Replace("-", "_").ToLowerInvariant()}.png", UriKind.RelativeOrAbsolute);
+#endif
             return image;
         }
 
@@ -99,18 +122,36 @@ namespace AndreasReitberger.Shared.XForm.Core.Localization
         {
             CurrentLanguage = info;
             CurrentCulture = new CultureInfo(info.Code);
+            OnLanguageChanged(new()
+            {
+                LangaugeInfo = info,
+                LangaugeCode = info.Code,
+                Culture = CurrentCulture,
+            });
         }
 
         public void Change(LocalizationInfo info, Action<LocalizationInfo> action)
         {
             action?.Invoke(info);
+            OnLanguageChanged(new()
+            {
+                LangaugeInfo = info,
+                LangaugeCode = info.Code,
+                Culture = CurrentCulture,
+            });
         }
 
         public bool Change(LocalizationInfo info, Func<LocalizationInfo, bool> function)
         {
+            OnLanguageChanged(new()
+            {
+                LangaugeInfo = info,
+                LangaugeCode = info.Code,
+                Culture = CurrentCulture,
+            });
             return function?.Invoke(info) ?? false;
         }
-        #endregion
+#endregion
 
     }
 }

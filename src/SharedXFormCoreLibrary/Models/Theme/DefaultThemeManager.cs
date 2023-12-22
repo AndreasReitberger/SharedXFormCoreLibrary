@@ -1,9 +1,7 @@
-﻿using AndreasReitberger.Shared.XForm.Core.Theme;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using System.Linq;
-using Xamarin.Forms;
 
-namespace AndreasReitberger.Shared.XForm.Core.Models.Theme
+namespace AndreasReitberger.Shared.XForm.Core.Theme
 {
     public partial class DefaultThemeManager : ObservableObject
     {

@@ -1,8 +1,10 @@
-﻿using UIKit;
+﻿using AndreasReitberger.Shared.XForm.Core.Services;
+using UIKit;
+using Xamarin.Forms;
 
-namespace AndreasReitberger.Shared.XForm.Core.Services
+[assembly: Dependency(typeof(DeviceProviderService))]
+namespace AppBasement.iOS.Interfaces
 {
-    DeviceProviderService
     public class DeviceProviderService : IDeviceProviderService
     {
         public string GetDeviceId()
