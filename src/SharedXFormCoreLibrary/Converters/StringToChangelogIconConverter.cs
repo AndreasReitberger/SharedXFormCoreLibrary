@@ -12,23 +12,27 @@ namespace AndreasReitberger.Shared.XForm.Core.Converters
         public const string Autorenew = "\U000f006a";
         public const string PlaylistPlus = "\U000f0412";
 
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object? Convert(object? value, Type targetType, object parameter, CultureInfo culture)
         {
             ChangelogType type = ChangelogType.New;
-            Enum.TryParse(value.ToString(), out type);
-            string glyp = PlaylistPlus;
-            glyp = type switch
+            if (value is string enumString)
             {
-                ChangelogType.New => PlaylistPlus,
-                ChangelogType.BugFix => Bug,
-                ChangelogType.Changed => Autorenew,
-                ChangelogType.Updated => CogRefreshOutline,
-                _ => PlaylistPlus,
-            };
-            return glyp;
+                Enum.TryParse(enumString, out type);
+                string glyp = PlaylistPlus;
+                glyp = type switch
+                {
+                    ChangelogType.New => PlaylistPlus,
+                    ChangelogType.BugFix => Bug,
+                    ChangelogType.Changed => Autorenew,
+                    ChangelogType.Updated => CogRefreshOutline,
+                    _ => PlaylistPlus,
+                };
+                return glyp;
+            }
+            return null;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public object? ConvertBack(object? value, Type targetType, object parameter, CultureInfo culture)
         {
             return null;
         }

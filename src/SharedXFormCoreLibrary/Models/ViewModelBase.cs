@@ -1,6 +1,5 @@
 ﻿using AndreasReitberger.Shared.XForm.Core.Interfaces;
 using CommunityToolkit.Mvvm.ComponentModel;
-using Xamarin.Forms;
 
 namespace AndreasReitberger.Shared.XForm.Core
 {
@@ -8,10 +7,10 @@ namespace AndreasReitberger.Shared.XForm.Core
     {
         #region Dependency Injection
         [ObservableProperty]
-        IDispatcher dispatcher;
+        IDispatcher? dispatcher;
 
         [ObservableProperty]
-        IServiceProvider provider;
+        IServiceProvider? provider;
         #endregion
 
         #region Properties

@@ -17,7 +17,7 @@ namespace AndreasReitberger.Shared.XForm.Core.Converters
         /// <param name="parameter">Gets the parameter.</param>
         /// <param name="culture">Gets the culture.</param>
         /// <returns>Returns the color.</returns>
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object? Convert(object? value, Type targetType, object parameter, CultureInfo culture)
         {
             try
             {
@@ -43,7 +43,7 @@ namespace AndreasReitberger.Shared.XForm.Core.Converters
         /// <param name="parameter">Gets the parameter.</param>
         /// <param name="culture">Gets the culture.</param>
         /// <returns>Returns the string.</returns>        
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public object? ConvertBack(object? value, Type targetType, object parameter, CultureInfo culture)
         {
             return null;
         }

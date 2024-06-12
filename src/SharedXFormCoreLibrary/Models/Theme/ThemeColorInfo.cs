@@ -1,6 +1,5 @@
 ﻿using AndreasReitberger.Shared.XForm.Core.Utilities;
 using CommunityToolkit.Mvvm.ComponentModel;
-using Xamarin.Forms;
 
 namespace AndreasReitberger.Shared.XForm.Core.Theme
 {
@@ -11,7 +10,7 @@ namespace AndreasReitberger.Shared.XForm.Core.Theme
         /// A matching name for the theme information.
         /// </summary>
         [ObservableProperty]
-        string themeName;
+        string themeName = string.Empty;
 
         [ObservableProperty]
         bool isAppDefault = false;
@@ -41,13 +40,10 @@ namespace AndreasReitberger.Shared.XForm.Core.Theme
         // Not yet supported
         [ObservableProperty]
         Color primaryLigtherColor;
-        //public partial Color PrimaryDarkerColor { get; private set; }
 
         [ObservableProperty]
         Color primaryDarkerColor;
-        //public partial Color PrimaryLigtherColor { get; private set; };
-        //public Color PrimaryDarkerColor { get; private set; }
-        //public Color PrimaryLigtherColor { get; private set; }
+
         #endregion
 
         #region Ctor

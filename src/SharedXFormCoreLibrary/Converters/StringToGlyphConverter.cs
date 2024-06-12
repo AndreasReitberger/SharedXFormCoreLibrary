@@ -16,34 +16,41 @@ namespace AndreasReitberger.Shared.XForm.Core.Converters
         /// <param name="parameter">Gets the parameter.</param>
         /// <param name="culture">Gets the culture.</param>
         /// <returns>Returns the string.</returns>
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object? Convert(object? value, Type targetType, object parameter, CultureInfo culture)
         {
-            var text = value;
-            switch ((string)text)
+            object? result = null;
+            if (value is string text)
             {
-                case "Text":
-                    ((Label)parameter).IsVisible = false;
-                    return text;
-                case "Viewed":
-                case "New":
-                    Application.Current.Resources.TryGetValue("PrimaryColor", out var retVal);
-                    ((Label)parameter).TextColor = (Color)retVal;
-                    break;
-                case "Received":
-                case "Sent":
-                    Application.Current.Resources.TryGetValue("Gray-600", out var colorVal);
-                    ((Label)parameter).TextColor = (Color)colorVal;
-                    break;
-                case "Audio":
-                case "Video":
-                case "Contact":
-                case "Photo":
-                    ((Label)parameter).IsVisible = true;
-                    break;
-            }
+                switch (text)
+                {
+                    case "Text":
+                        ((Label)parameter).IsVisible = false;
+                        return text;
+                    case "Viewed":
+                    case "New":
+                        Application.Current.Resources.TryGetValue("PrimaryColor", out var retVal);
+                        ((Label)parameter).TextColor = (Color)retVal;
+                        break;
+                    case "Received":
+                    case "Sent":
+                        Application.Current.Resources.TryGetValue("Gray-600", out var colorVal);
+                        ((Label)parameter).TextColor = (Color)colorVal;
+                        break;
+                    case "Audio":
+                    case "Video":
+                    case "Contact":
+                    case "Photo":
+                        ((Label)parameter).IsVisible = true;
+                        break;
+                }
 
-            ((Label)parameter).Resources.TryGetValue((string)value, out text);
-            return text;
+                if (((Label)parameter).Resources.TryGetValue((string)value, out var textOut))
+                {
+                    result = textOut;
+                }
+                return result;
+            }
+            else return null;
         }
 
         /// <summary>
@@ -54,7 +61,7 @@ namespace AndreasReitberger.Shared.XForm.Core.Converters
         /// <param name="parameter">Gets the parameter.</param>
         /// <param name="culture">Gets the culture.</param>
         /// <returns>Returns null.</returns>  
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public object? ConvertBack(object? value, Type targetType, object parameter, CultureInfo culture)
         {
             return null;
         }

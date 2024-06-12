@@ -13,7 +13,7 @@ namespace AndreasReitberger.Shared.XForm.Core.Converters
         /// <param name="parameter">Gets the parameter.</param>
         /// <param name="culture">Gets the culture.</param>
         /// <returns>Return the badge icon.</returns>
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object? Convert(object? value, Type targetType, object parameter, CultureInfo culture)
         {
             Color color = Color.Accent;
             if (value is not string str || string.IsNullOrEmpty(str)) return color;
@@ -36,7 +36,7 @@ namespace AndreasReitberger.Shared.XForm.Core.Converters
         /// <param name="parameter">Gets the parameter.</param>
         /// <param name="culture">Gets the culture.</param>
         /// <returns>Returns null.</returns>        
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public object? ConvertBack(object? value, Type targetType, object parameter, CultureInfo culture)
         {
             return null;
         }
