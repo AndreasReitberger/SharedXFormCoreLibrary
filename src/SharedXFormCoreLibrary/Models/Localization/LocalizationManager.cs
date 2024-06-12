@@ -1,15 +1,14 @@
 ﻿using AndreasReitberger.Shared.XForm.Core.Events;
 using AndreasReitberger.Shared.XForm.Core.Interfaces;
-using System.Collections.Generic;
-using System.Globalization;
+using CommunityToolkit.Mvvm.ComponentModel;
 using System.Linq;
 
 namespace AndreasReitberger.Shared.XForm.Core.Localization
 {
-    public partial class LocalizationManager : ILocalizationManager
+    public partial class LocalizationManager : ObservableObject, ILocalizationManager
     {
         #region Instance
-        static LocalizationManager _instance = null;
+        static LocalizationManager? _instance = null;
         static readonly object Lock = new();
         public static LocalizationManager Instance
         {
@@ -21,7 +20,6 @@ namespace AndreasReitberger.Shared.XForm.Core.Localization
                 }
                 return _instance;
             }
-
             set
             {
                 if (_instance == value) return;
@@ -30,7 +28,6 @@ namespace AndreasReitberger.Shared.XForm.Core.Localization
                     _instance = value;
                 }
             }
-
         }
         #endregion
 
@@ -39,10 +36,17 @@ namespace AndreasReitberger.Shared.XForm.Core.Localization
         #endregion
 
         #region Properties
-        public string BaseFlagImageUri { get; set; } = "";
-        public List<LocalizationInfo> Languages { get; set; } = new();
-        public LocalizationInfo CurrentLanguage { get; set; } = new();
-        public CultureInfo CurrentCulture { get; set; }
+        [ObservableProperty]
+        string baseFlagImageUri = "";
+
+        [ObservableProperty]
+        List<LocalizationInfo> languages = [];
+
+        [ObservableProperty]
+        LocalizationInfo? currentLanguage;
+
+        [ObservableProperty]
+        CultureInfo? currentCulture;
         #endregion
 
         #region Constructor
@@ -54,7 +58,7 @@ namespace AndreasReitberger.Shared.XForm.Core.Localization
 
         #region Events
 
-        public event EventHandler LanguageChanged;
+        public event EventHandler? LanguageChanged;
         protected virtual void OnLanguageChanged(LanguageChangedEventArgs e)
         {
             LanguageChanged?.Invoke(this, e);
@@ -80,9 +84,9 @@ namespace AndreasReitberger.Shared.XForm.Core.Localization
             }
         }
 
-        public void SetLanguages(List<LocalizationInfo> languages) => Languages = languages ?? new();
+        public void SetLanguages(List<LocalizationInfo> languages) => Languages = [.. languages];
         
-        public LocalizationInfo GetLocalizationInfoBasedOnCode(string cultureCode) => Languages?.FirstOrDefault(x => x.Code == cultureCode) ?? null;
+        public LocalizationInfo GetLocalizationInfoBasedOnCode(string cultureCode) => Languages.FirstOrDefault(x => x.Code == cultureCode);
         
         public Uri GetImageUri(string cultureCode)
         {

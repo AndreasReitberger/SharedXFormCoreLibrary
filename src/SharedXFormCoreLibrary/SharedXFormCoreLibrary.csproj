@@ -5,7 +5,6 @@
     <TargetFramework>netstandard2.1</TargetFramework>
     <Nullable>enable</Nullable>
 	<RootNamespace>AndreasReitberger.Shared.XForm.Core</RootNamespace>
-	<LangVersion>10</LangVersion>
 
 	<Title>XForm-Core Shared Library</Title>
 	<Description>A core libray used for our Xamarin.Forms libraries.</Description>

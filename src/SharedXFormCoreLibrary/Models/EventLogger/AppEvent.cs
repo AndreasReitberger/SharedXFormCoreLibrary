@@ -1,14 +1,22 @@
 ﻿using AndreasReitberger.Shared.XForm.Core.Enums;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace AndreasReitberger.Shared.XForm.Core.EventLogger
 {
-    public partial class AppEvent
+    public partial class AppEvent : ObservableObject
     {
         #region Properties
-        public string Message { get; set; }
-        public string SourceName { get; set; }
-        public ErrorLevel Level { get; set; }
-        public EventArgs Args { get; set; }
+        [ObservableProperty]
+        string message = string.Empty;
+
+        [ObservableProperty]
+        string sourceName = string.Empty;
+
+        [ObservableProperty]
+        ErrorLevel level;
+
+        [ObservableProperty]
+        EventArgs? args;
         #endregion
     }
 }

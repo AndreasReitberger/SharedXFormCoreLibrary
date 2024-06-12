@@ -1,12 +1,16 @@
 ﻿using AndreasReitberger.Shared.XForm.Core.Enums;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace AndreasReitberger.Shared.XForm.Core.EventLogger
 {
-    public class AppErrorEvent : AppEvent
+    public partial class AppErrorEvent : AppEvent
     {
         #region Properties
-        public Exception Exception { get; set; }
-        public int Type { get; set; }
+        [ObservableProperty]
+        Exception? exception;
+
+        [ObservableProperty]
+        int type = 0;
         #endregion
 
         #region Constructor

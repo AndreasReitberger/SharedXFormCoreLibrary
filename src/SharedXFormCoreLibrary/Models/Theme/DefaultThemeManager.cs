@@ -7,7 +7,7 @@ namespace AndreasReitberger.Shared.XForm.Core.Theme
     {
 
         #region Instance
-        static DefaultThemeManager _instance = null;
+        static DefaultThemeManager? _instance = null;
         static readonly object Lock = new();
         public static DefaultThemeManager Instance
         {
@@ -27,14 +27,13 @@ namespace AndreasReitberger.Shared.XForm.Core.Theme
                     _instance = value;
                 }
             }
-
         }
         #endregion
 
         #region Properties
         [ObservableProperty]
-        List<ThemeColorInfo> availableColors = new()
-        {
+        List<ThemeColorInfo> availableColors =
+        [
             new ThemeColorInfo() { ThemeName = "XForm", PrimaryColor = Color.FromHex("#2196F3"), IsAppDefault = true },
             new ThemeColorInfo() { ThemeName = Color.Gray.ToHex(), PrimaryColor = Color.Gray },
             new ThemeColorInfo() { ThemeName = Color.Brown.ToHex(), PrimaryColor = Color.Brown },
@@ -50,9 +49,9 @@ namespace AndreasReitberger.Shared.XForm.Core.Theme
             new ThemeColorInfo() { ThemeName = Color.Violet.ToHex(), PrimaryColor = Color.Violet },
             new ThemeColorInfo() { ThemeName = Color.Silver.ToHex(), PrimaryColor = Color.Silver },
             new ThemeColorInfo() { ThemeName = Color.Gold.ToHex(), PrimaryColor = Color.Gold },
-        };
+        ];
 
-        public ThemeColorInfo ActiveTheme => AvailableColors?.FirstOrDefault(themeInfo => themeInfo.IsAppDefault);
+        public ThemeColorInfo ActiveTheme => AvailableColors.FirstOrDefault(themeInfo => themeInfo.IsAppDefault);
         #endregion
     }
 }

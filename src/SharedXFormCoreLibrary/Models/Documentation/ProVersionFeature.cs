@@ -1,9 +1,12 @@
-﻿namespace AndreasReitberger.Shared.XForm.Core.Documentation
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+
+namespace AndreasReitberger.Shared.XForm.Core.Documentation
 {
-    public class ProVersionFeature
+    public  partial class ProVersionFeature : ObservableObject
     {
         #region Propertiers
-        public string Feature { get; set; }
+        [ObservableProperty]
+        string feature = string.Empty;
         #endregion
     }
 }

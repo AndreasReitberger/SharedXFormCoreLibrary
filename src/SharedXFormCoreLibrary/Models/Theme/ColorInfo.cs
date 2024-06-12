@@ -1,5 +1,4 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using Xamarin.Forms;
 
 namespace AndreasReitberger.Shared.XForm.Core.Theme
 {
@@ -10,7 +9,7 @@ namespace AndreasReitberger.Shared.XForm.Core.Theme
         /// A matching name for the color information.
         /// </summary>
         [ObservableProperty]
-        string name;
+        string name = string.Empty;
 
         /// <summary>
         /// The color for this info.

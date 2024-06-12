@@ -4,7 +4,7 @@ namespace AndreasReitberger.Shared.XForm.Core.Converters
 {
     public sealed class ByteArrayToImageConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object? Convert(object? value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value is not byte[] imageAsBytes)
             {
@@ -14,7 +14,7 @@ namespace AndreasReitberger.Shared.XForm.Core.Converters
             return image;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public object? ConvertBack(object? value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }

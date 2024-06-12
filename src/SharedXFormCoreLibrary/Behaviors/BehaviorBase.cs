@@ -2,7 +2,7 @@
 {
     public class BehaviorBase<T> : Behavior<T> where T : BindableObject
     {
-        public T AssociatedObject { get; set; }
+        public T? AssociatedObject { get; set; }
 
         protected override void OnAttachedTo(T bindable)
         {
@@ -32,7 +32,7 @@
         protected override void OnBindingContextChanged()
         {
             base.OnBindingContextChanged();
-            BindingContext = AssociatedObject.BindingContext;
+            BindingContext = AssociatedObject?.BindingContext;
         }
     }
 }

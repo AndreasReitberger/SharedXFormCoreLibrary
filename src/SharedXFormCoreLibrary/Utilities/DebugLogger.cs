@@ -9,7 +9,7 @@ namespace AndreasReitberger.Shared.XForm.Core.Utilities
         /// </summary>
         /// <param name="message">The message which should be logged</param>
         /// <param name="releaseAction">If not DEBUG, instead of writing to the console, the passed action will be invoked.</param>
-        public static void Log(string message, Action releaseAction = null)
+        public static void Log(string message, Action? releaseAction = null)
         {
 #if DEBUG
             Debug.WriteLine($"{DateTime.Now}: {message}");
@@ -18,13 +18,13 @@ namespace AndreasReitberger.Shared.XForm.Core.Utilities
 #endif
         }
 
-        public static Exception GetLastInnerException(Exception exception)
+        public static Exception? GetLastInnerException(Exception exception)
         {
             Stack<Exception> exceptions = new();
             exceptions.Push(exception);
             while (exceptions.Count > 0)
             {
-                Exception innerException = exceptions.Pop()?.InnerException;
+                Exception? innerException = exceptions.Pop()?.InnerException;
                 if (innerException != null)
                 {
                     exceptions.Push(innerException);

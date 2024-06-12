@@ -10,7 +10,7 @@ namespace AndreasReitberger.Shared.XForm.Core.Interfaces
         bool AllowAnalyticsData { get; set; }
         bool HasCriticalError { get; set; }
 
-        public static ObservableCollection<AppEvent> Events { get; }
+        public static ObservableCollection<AppEvent> Events { get; } = [];
         #endregion
 
         #region Methods
