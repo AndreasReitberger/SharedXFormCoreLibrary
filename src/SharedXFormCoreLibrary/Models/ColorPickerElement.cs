@@ -1,10 +1,15 @@
-﻿namespace AndreasReitberger.Shared.XForm.Core.Models
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+
+namespace AndreasReitberger.Shared.XForm.Core.Models
 {
-    public class ColorPickerElement
+    public partial class ColorPickerElement : ObservableObject
     {
         #region Properties
-        public string Name { get; set; } = string.Empty;
-        public Color ChipColor { get; set; }
+        [ObservableProperty]
+        public partial string Name { get; set; } = string.Empty;
+
+        [ObservableProperty]
+        public partial Color? ChipColor { get; set; }
         #endregion
     }
 }

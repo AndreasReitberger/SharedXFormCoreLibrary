@@ -7,21 +7,21 @@ namespace AndreasReitberger.Shared.XForm.Core
     {
         #region Dependency Injection
         [ObservableProperty]
-        IDispatcher? dispatcher;
+        public partial IDispatcher? Dispatcher { get; set; }
 
         [ObservableProperty]
-        IServiceProvider? provider;
+        public partial IServiceProvider? Provider { get; set; }
         #endregion
 
         #region Properties
         [ObservableProperty]
-        bool isLoading = false;
+        public partial bool IsLoading { get; set; } = false;
 
         [ObservableProperty]
-        bool isLoadingData = false;
+        public partial bool IsLoadingData { get; set; } = false;
 
         [ObservableProperty]
-        int isLoadingDataCounter = 0;
+        public partial int IsLoadingDataCounter { get; set; } = 0;
         partial void OnIsLoadingDataCounterChanged(int value)
         {
             // Avoid negative values
@@ -30,10 +30,10 @@ namespace AndreasReitberger.Shared.XForm.Core
         }
 
         [ObservableProperty]
-        bool isBusy = false;
+        public partial bool IsBusy { get; set; } = false;
 
         [ObservableProperty]
-        int isBusyCounter = 0;
+        public partial int IsBusyCounter { get; set; } = 0;
         partial void OnIsBusyCounterChanged(int value)
         {
             // Avoid negative values
@@ -42,25 +42,25 @@ namespace AndreasReitberger.Shared.XForm.Core
         }
 
         [ObservableProperty]
-        bool isReady = false;
+        public partial bool IsReady { get; set; } = false;
 
         [ObservableProperty]
-        bool isStartUp = true;
+        public partial bool IsStartUp { get; set; } = true;
 
         [ObservableProperty]
-        bool isStartingUp = false;
+        public partial bool IsStartingUp { get; set; } = false;
 
         [ObservableProperty]
-        bool isRefreshing = false;
+        public partial bool IsRefreshing { get; set; } = false;
 
         [ObservableProperty]
-        bool isResuming = false;
+        public partial bool IsResuming { get; set; } = false;
 
         [ObservableProperty]
-        bool isBeta = false;
+        public partial bool IsBeta { get; set; } = false;
 
         [ObservableProperty]
-        bool isPortrait = true;
+        public partial bool IsPortrait { get; set; } = true;
 
         #endregion
 

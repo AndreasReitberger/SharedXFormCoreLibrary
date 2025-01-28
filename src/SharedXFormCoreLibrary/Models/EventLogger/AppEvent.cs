@@ -7,16 +7,16 @@ namespace AndreasReitberger.Shared.XForm.Core.EventLogger
     {
         #region Properties
         [ObservableProperty]
-        string message = string.Empty;
+        public partial string Message { get; set; } = string.Empty;
 
         [ObservableProperty]
-        string sourceName = string.Empty;
+        public partial string SourceName { get; set; } = string.Empty;
 
         [ObservableProperty]
-        ErrorLevel level;
+        public partial ErrorLevel Level { get; set; }
 
         [ObservableProperty]
-        EventArgs? args;
+        public partial EventArgs? Args { get; set; }
         #endregion
     }
 }

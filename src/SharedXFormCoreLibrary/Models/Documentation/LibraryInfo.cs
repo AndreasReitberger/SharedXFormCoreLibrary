@@ -1,14 +1,22 @@
-﻿namespace AndreasReitberger.Shared.XForm.Core.Documentation
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+
+namespace AndreasReitberger.Shared.XForm.Core.Documentation
 {
-    public class LibraryInfo
+    public partial class LibraryInfo : ObservableObject
     {
         #region Properties
-        public string Library { get; set; }
-        public string LibraryUrl { get; set; }
-        public string Description { get; set; }
-        public bool StateChanged { get; set; }
-        public string License { get; set; }
-        public string LicenseUrl { get; set; }
+        [ObservableProperty]
+        public partial string Library { get; set; } = string.Empty;
+        [ObservableProperty]
+        public partial string LibraryUrl { get; set; } = string.Empty;
+        [ObservableProperty]
+        public partial string Description { get; set; } = string.Empty;
+        [ObservableProperty]
+        public partial bool StateChanged { get; set; }
+        [ObservableProperty]
+        public partial string License { get; set; } = string.Empty;
+        [ObservableProperty]
+        public partial string LicenseUrl { get; set; } = string.Empty;
         #endregion
 
         #region Constructor
