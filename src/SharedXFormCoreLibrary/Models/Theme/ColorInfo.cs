@@ -9,13 +9,13 @@ namespace AndreasReitberger.Shared.XForm.Core.Theme
         /// A matching name for the color information.
         /// </summary>
         [ObservableProperty]
-        string name = string.Empty;
+        public partial string Name { get; set; } = string.Empty;
 
         /// <summary>
         /// The color for this info.
         /// </summary>
         [ObservableProperty]
-        Color color;
+        public partial Color Color { get; set; }
         partial void OnColorChanged(Color value)
         {
             if (string.IsNullOrEmpty(Name))

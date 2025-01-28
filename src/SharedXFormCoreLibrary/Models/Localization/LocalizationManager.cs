@@ -37,16 +37,16 @@ namespace AndreasReitberger.Shared.XForm.Core.Localization
 
         #region Properties
         [ObservableProperty]
-        string baseFlagImageUri = "";
+        public partial string BaseFlagImageUri { get; set; } = "";
 
         [ObservableProperty]
-        List<LocalizationInfo> languages = [];
+        public partial List<LocalizationInfo> Languages { get; set; } = [];
 
         [ObservableProperty]
-        LocalizationInfo? currentLanguage;
+        public partial LocalizationInfo? CurrentLanguage { get; set; }
 
         [ObservableProperty]
-        CultureInfo? currentCulture;
+        public partial CultureInfo? CurrentCulture { get; set; }
         #endregion
 
         #region Constructor

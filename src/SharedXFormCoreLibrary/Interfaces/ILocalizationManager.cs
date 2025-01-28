@@ -1,5 +1,4 @@
 ﻿using AndreasReitberger.Shared.XForm.Core.Localization;
-using System.Globalization;
 
 namespace AndreasReitberger.Shared.XForm.Core.Interfaces
 {
@@ -7,8 +6,8 @@ namespace AndreasReitberger.Shared.XForm.Core.Interfaces
     {
         #region Properties
         public List<LocalizationInfo> Languages { get; set; }
-        public LocalizationInfo CurrentLanguage { get; set; }
-        public CultureInfo CurrentCulture { get; set; }
+        public LocalizationInfo? CurrentLanguage { get; set; }
+        public CultureInfo? CurrentCulture { get; set; }
         #endregion
 
         #region Methods

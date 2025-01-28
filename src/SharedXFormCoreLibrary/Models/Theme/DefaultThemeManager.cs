@@ -32,7 +32,7 @@ namespace AndreasReitberger.Shared.XForm.Core.Theme
 
         #region Properties
         [ObservableProperty]
-        List<ThemeColorInfo> availableColors =
+        public partial List<ThemeColorInfo> AvailableColors { get; set; } =
         [
             new ThemeColorInfo() { ThemeName = "XForm", PrimaryColor = Color.FromHex("#2196F3"), IsAppDefault = true },
             new ThemeColorInfo() { ThemeName = Color.Gray.ToHex(), PrimaryColor = Color.Gray },

@@ -13,7 +13,7 @@
         <Authors>Andreas Reitberger</Authors>
         <Copyright>Andreas Reitberger</Copyright>
 		<Company>Andreas Reitberger</Company>
-		<LangVersion>12</LangVersion>
+		<LangVersion>preview</LangVersion>
         <PublishReadyToRun>false</PublishReadyToRun>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 

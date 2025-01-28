@@ -1,11 +1,18 @@
-﻿namespace AndreasReitberger.Shared.XForm.Core.Documentation
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+
+namespace AndreasReitberger.Shared.XForm.Core.Documentation
 {
-    public class ResourceInfo
+    public partial class ResourceInfo : ObservableObject
     {
         #region Properties
-        public string Resource { get; set; }
-        public string ResourceUrl { get; set; }
-        public string Description { get; set; }
+        [ObservableProperty]
+        public partial string Resource { get; set; } = string.Empty;
+
+        [ObservableProperty]
+        public partial string ResourceUrl { get; set; } = string.Empty;
+
+        [ObservableProperty]
+        public partial string Description { get; set; } = string.Empty;
         #endregion
 
         #region Constructor
