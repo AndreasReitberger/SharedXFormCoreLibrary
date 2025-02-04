@@ -1,5 +1,6 @@
 ﻿using AndreasReitberger.Shared.XForm.Core.Interfaces;
 using CommunityToolkit.Mvvm.ComponentModel;
+using System.Threading.Tasks;
 
 namespace AndreasReitberger.Shared.XForm.Core
 {
@@ -78,6 +79,32 @@ namespace AndreasReitberger.Shared.XForm.Core
             Dispatcher = dispatcher;
             Provider = provider;
         }
+        #endregion
+
+        #region Methods
+        public void SetBusy(bool isBusy, IDispatcher? dispatcher)
+        {
+            // Only dispatch if needed
+            if (dispatcher is not null && dispatcher?.IsInvokeRequired is true)
+            {
+                dispatcher.BeginInvokeOnMainThread(() =>
+                {
+                    if (isBusy)
+                        IsBusyCounter++;
+                    else
+                        IsBusyCounter--;
+                });
+            }
+            // Update on the MainThread
+            else
+            {
+                if (isBusy)
+                    IsBusyCounter++;
+                else
+                    IsBusyCounter--;
+            }
+        }
+
         #endregion
 
         #region Dispose
