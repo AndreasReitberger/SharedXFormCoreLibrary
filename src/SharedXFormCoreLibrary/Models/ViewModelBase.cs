@@ -1,67 +1,15 @@
-﻿using AndreasReitberger.Shared.XForm.Core.Interfaces;
+﻿using AndreasReitberger.Shared.Core;
+using AndreasReitberger.Shared.XForm.Core.Interfaces;
 using CommunityToolkit.Mvvm.ComponentModel;
 using System.Threading.Tasks;
 
 namespace AndreasReitberger.Shared.XForm.Core
 {
-    public partial class ViewModelBase : ObservableObject, IViewModelBase
+    public partial class ViewModelBase : ViewModelCoreBase, IViewModelBase
     {
         #region Dependency Injection
         [ObservableProperty]
         public partial IDispatcher? Dispatcher { get; set; }
-
-        [ObservableProperty]
-        public partial IServiceProvider? Provider { get; set; }
-        #endregion
-
-        #region Properties
-        [ObservableProperty]
-        public partial bool IsLoading { get; set; } = false;
-
-        [ObservableProperty]
-        public partial bool IsLoadingData { get; set; } = false;
-
-        [ObservableProperty]
-        public partial int IsLoadingDataCounter { get; set; } = 0;
-        partial void OnIsLoadingDataCounterChanged(int value)
-        {
-            // Avoid negative values
-            if (value < 0) IsLoadingDataCounter = 0;
-            IsLoadingData = value > 0;
-        }
-
-        [ObservableProperty]
-        public partial bool IsBusy { get; set; } = false;
-
-        [ObservableProperty]
-        public partial int IsBusyCounter { get; set; } = 0;
-        partial void OnIsBusyCounterChanged(int value)
-        {
-            // Avoid negative values
-            if (value < 0) IsBusyCounter = 0;
-            IsBusy = value > 0;
-        }
-
-        [ObservableProperty]
-        public partial bool IsReady { get; set; } = false;
-
-        [ObservableProperty]
-        public partial bool IsStartUp { get; set; } = true;
-
-        [ObservableProperty]
-        public partial bool IsStartingUp { get; set; } = false;
-
-        [ObservableProperty]
-        public partial bool IsRefreshing { get; set; } = false;
-
-        [ObservableProperty]
-        public partial bool IsResuming { get; set; } = false;
-
-        [ObservableProperty]
-        public partial bool IsBeta { get; set; } = false;
-
-        [ObservableProperty]
-        public partial bool IsPortrait { get; set; } = true;
 
         #endregion
 
