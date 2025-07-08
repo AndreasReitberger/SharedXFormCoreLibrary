@@ -1,4 +1,4 @@
-﻿using AndreasReitberger.Shared.XForm.Core.Localization;
+﻿using AndreasReitberger.Shared.Core.Localization;
 
 namespace AndreasReitberger.Shared.XForm.Core.Interfaces
 {

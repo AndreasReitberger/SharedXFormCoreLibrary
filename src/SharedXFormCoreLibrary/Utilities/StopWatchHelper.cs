@@ -1,7 +1,7 @@
-﻿using AndreasReitberger.Shared.XForm.Core.Interfaces;
+﻿using AndreasReitberger.Shared.Core.EventLogger;
+using AndreasReitberger.Shared.XForm.Core.Interfaces;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using Xamarin.Forms;
 
 namespace AndreasReitberger.Shared.XForm.Core.Utilities
 {
@@ -15,7 +15,7 @@ namespace AndreasReitberger.Shared.XForm.Core.Utilities
             string msg = $"Performance: Start => {methodName}: {DateTime.Now})";
             dispatcher?.BeginInvokeOnMainThread(() =>
             {
-                if (log) eventManager?.LogInfo(new EventLogger.AppInfoEvent() { Message = msg, SourceName = $"{nameof(StopWatchHelper)}.{nameof(Start)}" });
+                if (log) eventManager?.LogInfo(new AppInfoEvent() { Message = msg, SourceName = $"{nameof(StopWatchHelper)}.{nameof(Start)}" });
                 Debug.WriteLine(msg);
             });
         }
@@ -26,7 +26,7 @@ namespace AndreasReitberger.Shared.XForm.Core.Utilities
             string msg = $"Performance: Done => {methodName}: {DateTime.Now} (Duration: {stopwatch?.Elapsed})";
             dispatcher?.BeginInvokeOnMainThread(() =>
             {
-                if (log) eventManager?.LogInfo(new EventLogger.AppInfoEvent() { Message = msg, SourceName = $"{nameof(StopWatchHelper)}.{nameof(Stop)}" });
+                if (log) eventManager?.LogInfo(new AppInfoEvent() { Message = msg, SourceName = $"{nameof(StopWatchHelper)}.{nameof(Stop)}" });
                 Debug.WriteLine(msg);
             });
         }

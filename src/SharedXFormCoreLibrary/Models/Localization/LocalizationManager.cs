@@ -1,4 +1,5 @@
-﻿using AndreasReitberger.Shared.XForm.Core.Events;
+﻿using AndreasReitberger.Shared.Core.Events;
+using AndreasReitberger.Shared.Core.Localization;
 using AndreasReitberger.Shared.XForm.Core.Interfaces;
 using CommunityToolkit.Mvvm.ComponentModel;
 using System.Linq;

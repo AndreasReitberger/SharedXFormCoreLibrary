@@ -1,4 +1,4 @@
-﻿using AndreasReitberger.Shared.XForm.Core.EventLogger;
+﻿using AndreasReitberger.Shared.Core.EventLogger;
 using System.Collections.ObjectModel;
 
 namespace AndreasReitberger.Shared.XForm.Core.Interfaces
