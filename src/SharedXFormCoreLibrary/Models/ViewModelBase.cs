@@ -16,13 +16,13 @@ namespace AndreasReitberger.Shared.XForm.Core
         #region Ctor
         public ViewModelBase()
         {
-            Dispatcher = Application.Current.Dispatcher;
+            Dispatcher ??= Application.Current.Dispatcher;
         }
-        public ViewModelBase(IDispatcher dispatcher)
+        public ViewModelBase(IDispatcher? dispatcher) : base()
         {
             Dispatcher = dispatcher;
         }
-        public ViewModelBase(IDispatcher dispatcher, IServiceProvider provider)
+        public ViewModelBase(IDispatcher? dispatcher, IServiceProvider? provider) : base(provider: provider)
         {
             Dispatcher = dispatcher;
             Provider = provider;
@@ -42,6 +42,29 @@ namespace AndreasReitberger.Shared.XForm.Core
                     else
                         IsBusyCounter--;
                 });
+            }
+            // Update on the MainThread
+            else
+            {
+                if (isBusy)
+                    IsBusyCounter++;
+                else
+                    IsBusyCounter--;
+            }
+        }
+
+        public async Task SetBusyAsync(bool isBusy, IDispatcher? dispatcher)
+        {
+            // Only dispatch if needed
+            if (dispatcher is not null && dispatcher?.IsInvokeRequired is true)
+            {
+                await Task.Run(() => dispatcher.BeginInvokeOnMainThread(() =>
+                {
+                    if (isBusy)
+                        IsBusyCounter++;
+                    else
+                        IsBusyCounter--;
+                }));
             }
             // Update on the MainThread
             else
