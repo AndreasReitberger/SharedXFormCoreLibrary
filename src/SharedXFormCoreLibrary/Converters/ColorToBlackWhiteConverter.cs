@@ -3,7 +3,7 @@
     public sealed class ColorToBlackWhiteConverter : IValueConverter
     {
 
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
             Color opposite = Color.Black;
             if (value is Color color)
@@ -14,7 +14,7 @@
             return opposite;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }

@@ -2,7 +2,7 @@
 {
     public sealed class DoubleHoursToTimeSpanConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
             try
             {
@@ -15,7 +15,7 @@
             }
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
             TimeSpan ts = (TimeSpan)value;
             if (ts == null)

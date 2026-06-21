@@ -3,7 +3,7 @@
     // Source: https://github.com/AndreasReitberger/SharedMauiCoreLibrary/blob/main/source/SharedMauiCoreLibrary/SharedMauiCoreLibrary/Converters/UnixDateToDateTimeConverter.cs
     public sealed class UnixDateToDateTimeConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
             try
             {
@@ -18,7 +18,7 @@
             }
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }
