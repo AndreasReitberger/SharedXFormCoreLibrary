@@ -4,7 +4,7 @@
     public sealed class UnixDoubleHoursToTimeSpanConverter : IValueConverter
     {
         public bool WithMiliSeconds { get; set; } = false;
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
             try
             {
@@ -19,7 +19,7 @@
             }
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
             TimeSpan ts = (TimeSpan)value;
             return ts.TotalSeconds;
